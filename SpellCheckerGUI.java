@@ -115,14 +115,14 @@ public class SpellCheckerGUI {
 
         JTextField textField = new JTextField();
         JTextArea resultArea = new JTextArea();
-         JButton addButton = new JButton("Add to Dictionary");
+        JButton addButton = new JButton("Add to Dictionary");
         JButton checkButton = new JButton("Check");
         resultArea.setFont(new Font("Times New Roman", Font.BOLD, 16));
         textField.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 
         addButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
         checkButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
-        
+
         Color customTextColor = Color.BLACK;  // Customize the text color
         addButton.setForeground(customTextColor);
         checkButton.setForeground(customTextColor);
@@ -132,8 +132,8 @@ public class SpellCheckerGUI {
         checkButton.setBackground(customBackgroundColor);
         frame.setBackground(customBackgroundColor);
 
-        addButton.setPreferredSize(new Dimension(10, 30));
-        checkButton.setPreferredSize(new Dimension(10, 30));
+        addButton.setPreferredSize(new Dimension(150, 30));
+        checkButton.setPreferredSize(new Dimension(150, 30));
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -163,14 +163,16 @@ public class SpellCheckerGUI {
                 }
             }
         });
-        
+
+        // Use FlowLayout to make buttons appear side by side
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        buttonPanel.add(addButton);
+        buttonPanel.add(checkButton);
+
         frame.setLayout(new GridLayout(4, 1));
         frame.add(textField);
         frame.add(resultArea);
-        frame.add(addButton);
-        frame.add(checkButton);
-
+        frame.add(buttonPanel); // Add the panel with buttons
         frame.setVisible(true);
     }
-   
 }
