@@ -14,19 +14,18 @@ class SpellChecker {
         this.dictionary = loadDictionaryFromFile();
     }
 
-   private ArrayList<String> loadDictionaryFromFile() {
-    ArrayList<String> loadedDictionary = new ArrayList<>();
-    try (BufferedReader reader = new BufferedReader(new FileReader(dictionaryFilePath))) {
-        String line;
-        while ((line = reader.readLine()) != null) {
-            loadedDictionary.add(line.toLowerCase().trim());  // Convert to lowercase
+    private ArrayList<String> loadDictionaryFromFile() {
+        ArrayList<String> loadedDictionary = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(dictionaryFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                loadedDictionary.add(line.toLowerCase().trim());  // Convert to lowercase
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    } catch (IOException e) {
-        e.printStackTrace();
+        return loadedDictionary;
     }
-    return loadedDictionary;
-}
-
 
     private void saveDictionaryToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(dictionaryFilePath))) {
@@ -97,9 +96,7 @@ class SpellChecker {
     private int min(int a, int b, int c) {
         return Math.min(Math.min(a, b), c);
     }
-    
 }
-
 
 public class SpellCheckerGUI {
     public static void main(String[] args) {
@@ -114,26 +111,23 @@ public class SpellCheckerGUI {
         SpellChecker spellChecker = new SpellChecker();
 
         JTextField textField = new JTextField();
+        JTextArea resultArea = new JTextArea();
         JButton addButton = new JButton("Add to Dictionary");
         JButton checkButton = new JButton("Check");
-        JTextArea resultArea = new JTextArea();
-        resultArea.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        resultArea.setFont(new Font("Times New Roman", Font.BOLD, 16));
         textField.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 
-        addButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        checkButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
-        
+        addButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        checkButton.setFont(new Font("Times New Roman", Font.BOLD, 16));
+
         Color customTextColor = Color.BLACK;  // Customize the text color
         addButton.setForeground(customTextColor);
         checkButton.setForeground(customTextColor);
 
-        Color customBackgroundColor = Color.LIGHT_GRAY;  // Customize the background color
+        Color customBackgroundColor = Color.GRAY;  // Customize the background color
         addButton.setBackground(customBackgroundColor);
         checkButton.setBackground(customBackgroundColor);
         frame.setBackground(customBackgroundColor);
-
-        addButton.setPreferredSize(new Dimension(100, 30));
-        checkButton.setPreferredSize(new Dimension(100, 30));
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -163,14 +157,20 @@ public class SpellCheckerGUI {
                 }
             }
         });
-        
-        frame.setLayout(new GridLayout(4, 1));
-        frame.add(textField);
-        frame.add(addButton);
-        frame.add(checkButton);
-        frame.add(resultArea);
 
+        // Set preferred size for buttons
+        addButton.setPreferredSize(new Dimension(150, 30));
+        checkButton.setPreferredSize(new Dimension(150, 30));
+
+        // Use BorderLayout and place the buttons in the SOUTH position
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(addButton);
+        buttonPanel.add(checkButton);
+
+        frame.setLayout(new BorderLayout());
+        frame.add(textField, BorderLayout.NORTH);
+        frame.add(resultArea, BorderLayout.CENTER);
+        frame.add(buttonPanel, BorderLayout.SOUTH); // Add the panel with buttons to the bottom
         frame.setVisible(true);
     }
-   
 }
