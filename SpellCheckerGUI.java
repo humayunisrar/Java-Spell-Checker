@@ -64,6 +64,7 @@ class SpellChecker {
     }
 
     private boolean isSimilar(String word1, String word2) {
+        
         // Implement a more precise similarity check (e.g., Levenshtein distance)
         int distance = calculateLevenshteinDistance(word1, word2);
         return distance <= 1;
@@ -99,7 +100,6 @@ class SpellChecker {
     }
     
 }
-
 
 public class SpellCheckerGUI {
     public static void main(String[] args) {
