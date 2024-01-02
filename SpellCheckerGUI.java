@@ -1,35 +1,36 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
+import javax.swing.*;//for GUI 
+import java.awt.*;//for GUI 
+import java.awt.event.ActionEvent;//for GUI actions (key press, mouse click)
+import java.awt.event.ActionListener;//for GUI actions (key press, mouse click) 
+import java.io.*;//for file handling
+import java.util.ArrayList;//for arraylist
+import java.util.Collections;//for arraylist management
 
-class SpellChecker {
-    private ArrayList<String> dictionary;
-    private String dictionaryFilePath = "dictionary.txt";
+class SpellChecker {//class for spell checker logic spell checking ki is me lag rhi
+   
+    private ArrayList<String> dictionary;//arraylist for dictionary
+    private String dictionaryFilePath = "dictionary.txt";//dictionary file path basically file handling ke liye hai ke kis file se data read karna hai
 
-    SpellChecker() {
-        this.dictionary = loadDictionaryFromFile();
+    SpellChecker() {//constructor for spell checker class ye initialize karega dictionary ko (initialization means dictionary ko file se read karega)
+        this.dictionary = loadDictionaryFromFile();//dictionary ko file se load karega
     }
 
-   private ArrayList<String> loadDictionaryFromFile() {
-    ArrayList<String> loadedDictionary = new ArrayList<>();
-    try (BufferedReader reader = new BufferedReader(new FileReader(dictionaryFilePath))) {
-        String line;
-        while ((line = reader.readLine()) != null) {
+   private ArrayList<String> loadDictionaryFromFile() {// ye wala method dictionary ke words ko lower case me convert karega or arraylist me add karega
+    ArrayList<String> loadedDictionary = new ArrayList<>();//arraylist for lower case words
+    try (BufferedReader reader = new BufferedReader(new FileReader(dictionaryFilePath))) {//file reader for reading file
+        String line;//string for reading line by line
+        while ((line = reader.readLine()) != null) {//reading line by line
             loadedDictionary.add(line.toLowerCase().trim());  // Convert to lowercase
         }
-    } catch (IOException e) {
-        e.printStackTrace();
+    } catch (IOException e) {//exception handling means agar file read nhi ho rhi to ye exception throw karega
+        e.printStackTrace();//exception print karega
     }
-    return loadedDictionary;
+    return loadedDictionary;//returning arraylist means dictionary ko return karega
 }
 
 
-    private void saveDictionaryToFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(dictionaryFilePath))) {
+    private void saveDictionaryToFile() {// ye wala method word ko dictionary ki file me save karega
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(dictionaryFilePath))) {//file writer for writing file
             for (String word : dictionary) {
                 writer.write(word);
                 writer.newLine();
