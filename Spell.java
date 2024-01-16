@@ -95,7 +95,8 @@ class SpellChecker {//class for spell checker logic spell checking ki is me lag 
         int n = s2.length();// Declares an integer variable named n to store the length of the second string/ word.
 
         int[][] dp = new int[m + 1][n + 1]; // m + 1 and n + 1 are dimensions of 2D Array dp, where m is the length of string s1 and n is the length of string s2.
-                                            // +1 is added to the dimensions because the first row and column of the 2D Array dp are used to store the base cases of the Levenshtein distance algorithm. base cases are the values of the Levenshtein distance when one of the strings is empty.
+                                            // +1 is added to the dimensions because the first row and column of the 2D Array dp are used to store the base cases of the Levenshtein distance algorithm. base cases are the values of the Levenshtein distance when one of the strings is empty.during comparison of two strings.
+
         for (int i = 0; i <= m; i++) {// for loop to traverse the character of first string / word.
             for (int j = 0; j <= n; j++) { // for loop to traverse the character of second string / word.
 
@@ -106,10 +107,11 @@ class SpellChecker {//class for spell checker logic spell checking ki is me lag 
                 } else { // Enters a conditional block if both strings / words are non-empty.
                     dp[i][j] = min( // it calculates the minimum of the three values and assigns it to dp[i][j].
                             dp[i - 1][j] + 1, // Represents deletion in s1.
-                            dp[i][j - 1] + 1, // Represents insertion in s1.
-                            dp[i - 1][j - 1] + (s1.charAt(i - 1) == s2.charAt(j - 1) ? 0 : 1) // Represents substitution in s1. The expression s1.charAt(i - 1) is used to access the character in s1 at the position represented by i - 1. 
+                            dp[i][j - 1] + 1, // Represents insertion in s1. insertion in s1 means that a character from s2 is inserted into s1. if a word is hell and we want to insert o in it then it will become hello.
+                            dp[i - 1][j - 1] + (s1.charAt(i - 1) == s2.charAt(j - 1) ? 0 : 1) // Represents substitution in s1. The expression s1.charAt(i - 1) is used to access the character in s1 at the position represented by i - 1.  char at method is used to access the character at the specified index. The expression s2.charAt(j - 1) is used to access the character in s2 at the position represented by j - 1. The ternary operator is used to check if the characters at the positions represented by i - 1 and j - 1 in s1 and s2 are equal. If they are equal, the distance is 0, otherwise, it is 1. it is used to check if the characters at the positions represented by i - 1 and j - 1 in s1 and s2 are equal. If they are equal, the distance is 0, otherwise, it is 1. we want to check distance between hello and hallo so we will check the character at index 0 in hello and character at index 0 in hallo if they are equal then distance will be 0 otherwise 1.we want to check distance because we want to check if the word is similar or not. when distance is 1 then the word is similar.
+
                                  //Vn me hai puri explaination                                // -1 is liye because humne i ko 0 se start krna hai or index 0 se start hota hai. 
-                            );
+                     );
                 }}}
 
         return dp[m][n]; // Returns the value of dp[m][n], which represents the distance between s1 and s2.
