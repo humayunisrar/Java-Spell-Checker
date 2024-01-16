@@ -134,7 +134,7 @@ public class Spell {//class for GUI
         frame.setSize(600, 300);//frame ki size set karega
 
         SpellChecker spellChecker = new SpellChecker();//spell checker class ka object banayega kiun ke spell checker class me dictionary hai or dictionary ko load karna hai 
-
+                                                            
         JTextField textField = new JTextField();//text field for GUI
         JTextArea resultArea = new JTextArea();//text area for GUI
         JButton addButton = new JButton("Add to Dictionary");//button for GUI
@@ -152,7 +152,7 @@ public class Spell {//class for GUI
         Color customBackgroundColor = Color.GRAY;  // Customize the background color
         addButton.setBackground(customBackgroundColor);//background color for button
         checkButton.setBackground(customBackgroundColor);//background color for button
-        frame.setBackground(customBackgroundColor);//background color for frame
+       
 
         addButton.setPreferredSize(new Dimension(150, 30));//size for button
         checkButton.setPreferredSize(new Dimension(150, 30));//size for button
@@ -178,7 +178,7 @@ public class Spell {//class for GUI
                 } else {
                     ArrayList<String> suggestions = spellChecker.suggestCorrections(inputText);
                     if (!suggestions.isEmpty()) {
-                        resultArea.setText("Suggestions: " + String.join(", ", suggestions));
+                        resultArea.setText("Suggestions: " + String.join(", ", suggestions));// string.join method is used to join the strings.
                     } else {
                         resultArea.setText("No suggestions found");
                     }
@@ -190,10 +190,10 @@ public class Spell {//class for GUI
         buttonPanel.add(addButton);
         buttonPanel.add(checkButton);
 
-        frame.setLayout(new GridLayout(4, 1));
+        frame.setLayout(new GridLayout(3, 1));
         frame.add(textField);
         frame.add(resultArea);
         frame.add(buttonPanel); // Add the panel with buttons
-        frame.setVisible(true);
+        frame.setVisible(true);// frame ko visible karega means frame ko show karega
     }
 }
