@@ -11,7 +11,7 @@ class SpellChecker {//class for spell checker logic spell checking ki is me lag 
     private ArrayList<String> dictionary; 
     private String dictionaryFilePath = "dictionary.txt"; 
 
-    SpellChecker() {
+    SpellChecker() { // Constructor for the SpellChecker class. It is responsible for initializing the dictionary.
         this.dictionary = loadDictionaryFromFile();
     }
                             //TRAVERSING THE DICTIONARY
@@ -20,13 +20,13 @@ class SpellChecker {//class for spell checker logic spell checking ki is me lag 
     ArrayList<String> loadedDictionary = new ArrayList<>();//Initializes an ArrayList named loadedDictionary to store the words read from the file.
     try (BufferedReader reader = new BufferedReader(new FileReader(dictionaryFilePath))) {//try block me buffered reader ka object banaya or file reader ka object banaya or dictionary file path ko read karne ke liye dictionary file path me dictionary file ka path hai. buffer reader allows us to read the file line by line and efficiently. while file reader focuses on reading characters.
         String line;//String variable named line to store the line read from the file.
-        while ((line = reader.readLine()) != null) {//while loop to read the file line by line until the end of the file is reached.
-            loadedDictionary.add(line.toLowerCase().trim());//Adds the line read from the file to the ArrayList named loadedDictionary. The toLowerCase() method converts the line to lowercase and the trim() method removes any leading or trailing spaces.
+        while ((line = reader.readLine()) != null) { //while loop to read the file line by line until the end of the file is reached.
+            loadedDictionary.add(line.toLowerCase().trim()); //Adds the line read from the file to the ArrayList named loadedDictionary. The toLowerCase() method converts the line to lowercase and the trim() method removes any leading or trailing spaces.
         }
-    } catch (IOException e) {//catch for error handling means ke agar exception aye to ye catch block chalega
-        e.printStackTrace();//To print the exception.
+    } catch (IOException e) { //catch for error handling means ke agar exception aye to ye catch block chalega
+        e.printStackTrace(); //To print the exception.
     }
-    return loadedDictionary;//Returns the loadedDictionary jisme words read from the file.
+    return loadedDictionary; //Returns the loadedDictionary jisme words read from the file.
 }
 
                             // SAVING THE DICTIONARY
